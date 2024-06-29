@@ -46,7 +46,7 @@ public class BinaryTreeConstructor {
         //Pushing root pair to the stack for starting the work
         stack.push(rootPair);
         int index = 0;
-        while(stack.size()>0){
+        while(!stack.isEmpty()){
             Pair top = stack.peek();
 
             //Means we have to work for left
