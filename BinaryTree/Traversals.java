@@ -24,6 +24,7 @@ public class Traversals {
         }
     }
 
+    // before going deep in the recursion
     public static void traversalsPre(Node node){
         if (node==null)
             return;

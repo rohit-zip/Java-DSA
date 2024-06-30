@@ -55,6 +55,22 @@ public class LevelOrderTraversal {
             System.out.println();
         }
     }
+
+    public static void levelTraversal(Node root) {
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i=0 ; i<size ; i++) {
+                root = queue.remove();
+                System.out.print(root.data + " ");
+                if (root.left != null) queue.add(root.left);
+                if (root.right != null) queue.add(root.right);
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         Integer[] array = {50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null, null};
         Stack<Pair> stack = new Stack<>();

@@ -12,13 +12,19 @@ public class Size_Sum_Max_Height {
         Node(int data){
             this.data = data;
         }
+
+        public Node(int data, Node left, Node right) {
+            this.data = data;
+            this.left = left;
+            this.right = right;
+        }
     }
 
     private static class Pair{
         int state;
         Node node;
 
-        Pair(int state, Node node){
+        Pair(Node node, int state){
             this.node = node;
             this.state = state;
         }
@@ -30,7 +36,7 @@ public class Size_Sum_Max_Height {
             return;
         }
         str += root.left==null ? "." : root.left.data;
-        str += " -> " + root.data + " <- ";
+        str += " <- " + root.data + " -> ";
         str += root.right==null ? "." : root.right.data;
         System.out.println(str);
         display(root.left);
@@ -70,52 +76,46 @@ public class Size_Sum_Max_Height {
         }
         int leftHeight = height(root.left);
         int rightHeight = height(root.right);
-        int height = Math.max(leftHeight, rightHeight) + 1;
+        int fh = Math.max(leftHeight, rightHeight) + 1;
 
-        return height;
+        return fh;
     }
 
     public static void main(String[] args) {
         Integer[] array = {50, 25, 12, null, null, 37, 30, null, null, null,75, 62, null, 70, null, null, 87, null, null};
         Stack<Pair> stack = new Stack<>();
-        Node root = new Node(array[0]);
-        Pair pair = new Pair(1, root);
+        Node root = new Node(array[0], null, null);
+        Pair pair = new Pair(root, 1);
         stack.push(pair);
         int idx = 0;
-        while(stack.size()>0){
+        while (!stack.isEmpty()) {
             Pair top = stack.peek();
-            if (top.state==1){
+            if (top.state == 1) {
                 idx++;
-                if (array[idx]!=null){
-                    Node leftNode = new Node(array[idx]);
+                if (array[idx] != null) {
+                    Node leftNode = new Node(array[idx], null, null);
                     top.node.left = leftNode;
-                    Pair leftPair = new Pair(1, leftNode);
+                    Pair leftPair = new Pair(leftNode, 1);
                     stack.push(leftPair);
-                } else{
+                } else {
                     top.node.left = null;
                 }
                 top.state++;
-            }
-            if (top.state==2){
+            } else if (top.state == 2) {
                 idx++;
-                if (array[idx]!=null){
-                    Node rightNode = new Node(array[idx]);
+                if (array[idx] != null) {
+                    Node rightNode = new Node(array[idx], null, null);
                     top.node.right = rightNode;
-                    Pair rightPair = new Pair(1, rightNode);
+                    Pair rightPair = new Pair(rightNode, 1);
                     stack.push(rightPair);
                 } else {
                     top.node.right = null;
                 }
                 top.state++;
-            }
-            else {
+            } else {
                 stack.pop();
             }
         }
-        display(root);
-        System.out.println(size(root));
-//        System.out.println(sum(root));
-//        System.out.println(max(root));
-//        System.out.println(height(root));
+        System.out.println(height(root));
     }
 }
