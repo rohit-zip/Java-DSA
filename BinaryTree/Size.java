@@ -2,7 +2,16 @@ package BinaryTree;
 
 import java.util.Stack;
 
-public class BinaryTreeConstructor {
+/**
+ * Owner - Rohit Parihar
+ * Author - rohit
+ * Project - Java Questions
+ * Package - BinaryTree
+ * Created_on - June 29 - 2024
+ * Created_at - 21:00
+ */
+
+public class Size {
 
     private static class Node {
         int data;
@@ -26,14 +35,16 @@ public class BinaryTreeConstructor {
         }
     }
 
-    /**
-     *
-     * Time Complexity -> O(N) Tree Traversal is involved which is required
-     * Space Complexity -> O(N) Space used by Stack
-     * @param args
-     */
+    public static int size(Node node) {
+        if (node == null) return 0;
+        int ls = size(node.left);
+        int rs = size(node.right);
+        int total = ls + rs + 1;
+        return total;
+    }
+
     public static void main(String[] args) {
-        Integer[] array = {50, 25, 12, null, null, 37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null, null};
+        Integer[] array = {50, 25, 12, null, null, 37, 30, null, null, null,75, 62, null, 70, null, null, 87, null, null};
         Stack<Pair> stack = new Stack<>();
         Node rootNode = new Node(array[0], null, null);
         Pair rootPair = new Pair(rootNode, 0);
@@ -42,7 +53,6 @@ public class BinaryTreeConstructor {
 
         while (!stack.isEmpty()) {
             Pair top = stack.peek();
-
             if (top.state == 0) {
                 index++;
                 if (array[index] != null) {
@@ -53,8 +63,7 @@ public class BinaryTreeConstructor {
                 } else {
                     top.node.left = null;
                 }
-                top.state++;
-            } else if (top.state == 1) {
+            } if (top.state == 1) {
                 index++;
                 if (array[index] != null) {
                     Node rightNode = new Node(array[index], null, null);
@@ -64,7 +73,6 @@ public class BinaryTreeConstructor {
                 } else {
                     top.node.right = null;
                 }
-                top.state++;
             } else {
                 stack.pop();
             }
