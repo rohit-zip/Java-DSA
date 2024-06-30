@@ -26,6 +26,15 @@ public class BinarySearchTreeConstructor {
         return node;
     }
 
+    public static Node generateTree(int[] array, int lo, int hi) {
+        if (lo > hi) return null;
+        int mid = (lo+hi)/2;
+        int data = array[mid];
+        Node lc = generateTree(array, lo, mid - 1);
+        Node rc = generateTree(array, mid + 1, hi);
+        return new Node(data, lc, rc);
+    }
+
     public static void display(Node node){
         if (node==null)
             return;
