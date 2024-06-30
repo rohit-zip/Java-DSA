@@ -82,5 +82,6 @@ public class Max {
                 stack.pop();
             }
         }
+        System.out.println(max(root));
     }
 }

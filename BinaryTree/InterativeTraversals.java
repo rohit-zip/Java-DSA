@@ -29,7 +29,7 @@ public class InterativeTraversals {
     /**
      *
      * Here we are using state method to follow recursion type practice <br/>
-     * If state is means it is in Pre-Order <br/>
+     * If state is 1 means it is in Pre-Order <br/>
      * State is 2 means it is in In-Order <br/>
      * State is 3 means it is in Post-Order <br/>
      *
@@ -43,7 +43,7 @@ public class InterativeTraversals {
         String post = "";
         while(stack.size()>0){
             Pair top = stack.peek();
-            if (top.state==1){
+            if (top.state==1){ //pre order
                 pre+= top.node.data + " ";
                 top.state++;
                 if (top.node.left!=null){
