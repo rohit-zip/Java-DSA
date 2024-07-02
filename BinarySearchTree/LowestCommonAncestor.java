@@ -48,7 +48,7 @@ public class LowestCommonAncestor {
         }
     }
 
-    public static int lowestCommonAncestor(Node  node, int d1, int d2){
+    public static int lowestCommonAncestor(Node node, int d1, int d2){
         if (d1 < node.data && d2 < node.data)
             return lowestCommonAncestor(node.left, d1, d2);
         else if (d1 > node.data && d2 > node.data)

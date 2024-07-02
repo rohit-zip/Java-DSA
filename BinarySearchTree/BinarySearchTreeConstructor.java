@@ -26,9 +26,20 @@ public class BinarySearchTreeConstructor {
         return node;
     }
 
+    /**
+     *
+     * {12, 25, 37, 50, 62, 67, 87}
+     * mid = 50
+     * 12, 25, 37 -> left -> mid = 25
+     * 62, 67, 87 -> right
+     *
+     * @param array
+     * @param lo
+     * @param hi
+     * @return
+     */
     public static Node generateTree(int[] array, int lo, int hi) {
-        if (lo > hi) return null;
-        int mid = (lo+hi)/2;
+        int mid = (lo + hi)/2;
         int data = array[mid];
         Node lc = generateTree(array, lo, mid - 1);
         Node rc = generateTree(array, mid + 1, hi);
